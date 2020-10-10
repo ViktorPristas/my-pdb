@@ -7,24 +7,27 @@ import sk.upjs.gursky.bplustree.BPObject;
 public class PersonEntry implements BPObject<PersonStringKey, PersonEntry> {
 
 	private static final long serialVersionUID = -3849588860748391617L;
-	
+
 	String name, surname;
-	int    age, salary;
-	
-	public PersonEntry() {}
-	
+	int age, salary;
+
+	public PersonEntry() {
+	}
+
 	public PersonStringKey getKey() {
-		
 		return new PersonStringKey(surname);
 	}
-	
+
+	public PersonSalaryKey getSalaryKey() {
+		return new PersonSalaryKey(salary);
+	}
+
 	public int getSize() {
-		
 		return 48;
 	}
-	
+
 	public void save(ByteBuffer bb) {
-		
+
 		for (int k = 0; k < 10; k++) {
 			bb.putChar(name.charAt(k));
 		}
@@ -34,11 +37,11 @@ public class PersonEntry implements BPObject<PersonStringKey, PersonEntry> {
 		bb.putInt(age);
 		bb.putInt(salary);
 	}
-		
+
 	public void load(ByteBuffer bb) {
-	
+
 		char[] data = new char[10];
-		
+
 		for (int i = 0; i < 10; i++) {
 			data[i] = bb.getChar();
 		}
@@ -50,15 +53,24 @@ public class PersonEntry implements BPObject<PersonStringKey, PersonEntry> {
 		age = bb.getInt();
 		salary = bb.getInt();
 	}
-	
+
 	@Override
 	public String toString() {
-		
+
 		return name + " " + surname + " " + age + " " + salary + System.getProperty("line.separator");
 	}
-	
+
+//	public int compareTo(PersonEntry zaznam) {
+//
+//		return this.surname.compareTo(zaznam.surname);
+//	}
+
 	public int compareTo(PersonEntry zaznam) {
-		
-		return this.surname.compareTo(zaznam.surname);
+		if (this.salary < zaznam.salary)
+			return -1;
+		if (this.salary > zaznam.salary)
+			return 1;
+		return 0;
+
 	}
 }

@@ -35,7 +35,7 @@ public class ClusteredBPTreeTest {
 		INDEX_FILE.delete();
 	}
 
-	 @Test
+	// @Test
 	public void test() throws Exception {
 		long time = System.nanoTime();
 		List<PersonEntry> result = bptree.intervalQuery(new PersonStringKey("a"), new PersonStringKey("b999999999"));
@@ -46,7 +46,7 @@ public class ClusteredBPTreeTest {
 		assertTrue(result.size() > 0);
 	}
 
-	//@Test
+	@Test
 	public void testAdd() throws Exception {
 		PersonEntry prev = null;
 		int count = 100;
