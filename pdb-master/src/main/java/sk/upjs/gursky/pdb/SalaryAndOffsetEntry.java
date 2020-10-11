@@ -46,7 +46,7 @@ public class SalaryAndOffsetEntry implements BPObject<PersonSalaryKey, SalaryAnd
 
 	@Override
 	public int getSize() {
-		return 28;
+		return 12;
 	}
 
 	@Override
